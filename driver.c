@@ -32,17 +32,17 @@ int main(int argc, char const *argv[])
 	android_device dev;
 
 	printf("Attempting to find device...");
-	if(!android_device_find_device(&dev))
+	if (!android_device_find_device(&dev))
 	{
 		printf("Failure!...Exiting!\n");
 		return -1;
 	}
 	else
 		printf("Success!\n");
-	if(dev.product_id != ACCESSORY_PID && dev.product_id != ACCESSORY_PID_ADB)
+	if (dev.product_id != ACCESSORY_PID && dev.product_id != ACCESSORY_PID_ADB)
 	{
 		printf("Attempting to put device in accessory mode...");
-		if(!android_device_set_accesory_mode(&dev))
+		if (!android_device_set_accesory_mode(&dev))
 		{
 			printf("Failure...Exiting!\n");
 			return -1;
@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
 	else
 		printf("Device already in Accesory Mode!\n");
 	printf("Attempting to open music app...\n");
-	if(android_device_send_hid_event(&dev, KEYCODE_MUSIC))
+	if (android_device_send_hid_event(&dev, KEYCODE_MUSIC))
 		printf("Success!\n");
 	else
 		printf("Failure!\n");
