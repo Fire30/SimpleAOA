@@ -28,34 +28,34 @@ THE SOFTWARE.
 
 int main(int argc, char const *argv[])
 {
-	libusb_init(NULL);
-	android_device dev;
+    libusb_init(NULL);
+    android_device dev;
 
-	printf("Attempting to find device...");
-	if (!android_device_find_device(&dev))
-	{
-		printf("Failure!...Exiting!\n");
-		return -1;
-	}
-	else
-		printf("Success!\n");
-	if (dev.product_id != ACCESSORY_PID && dev.product_id != ACCESSORY_PID_ADB)
-	{
-		printf("Attempting to put device in accessory mode...");
-		if (!android_device_set_accesory_mode(&dev))
-		{
-			printf("Failure...Exiting!\n");
-			return -1;
-		}
-		printf("Success!\n");
-		usleep(100000);
-	}
-	else
-		printf("Device already in Accesory Mode!\n");
-	printf("Attempting to open music app...\n");
-	if (android_device_send_hid_event(&dev, KEYCODE_MUSIC))
-		printf("Success!\n");
-	else
-		printf("Failure!\n");
-	return 0;
+    printf("Attempting to find device...");
+    if (!android_device_find_device(&dev))
+    {
+        printf("Failure!...Exiting!\n");
+        return -1;
+    }
+    else
+        printf("Success!\n");
+    if (dev.product_id != ACCESSORY_PID && dev.product_id != ACCESSORY_PID_ADB)
+    {
+        printf("Attempting to put device in accessory mode...");
+        if (!android_device_set_accesory_mode(&dev))
+        {
+            printf("Failure...Exiting!\n");
+            return -1;
+        }
+        printf("Success!\n");
+        usleep(100000);
+    }
+    else
+        printf("Device already in Accesory Mode!\n");
+    printf("Attempting to open music app...\n");
+    if (android_device_send_hid_event(&dev, KEYCODE_MUSIC))
+        printf("Success!\n");
+    else
+        printf("Failure!\n");
+    return 0;
 }
